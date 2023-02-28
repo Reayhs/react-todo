@@ -1,35 +1,46 @@
 import React from "react";
 
-function List({ list, removeItem, editItem, changeStatu }) {
-  console.log(list);
+function List({ list, removeItem, editItem, changeStatu, searchText }) {
   return (
     <>
-      {list.map((item) => (
-        <li
-          className="p-2  w-full flex justify-between items-center gap-20 cursor-pointer"
-          key={item.id}
-        >
-          <h2
-            onClick={() => changeStatu(item.id)}
-            className={` select-none text-xl lg:text-[15px] ${
-              item.statu ? "line-through text-error" : ""
-            }`}
+      {list
+        .filter((item) => {
+          if (searchText == "") {
+            return item;
+          } else if (
+            item.title
+              .toLocaleLowerCase()
+              .includes(searchText.toLocaleLowerCase().trim())
+          ) {
+            return item;
+          }
+        })
+        .map((item) => (
+          <li
+            className="p-2  w-full flex justify-between items-center gap-20 cursor-pointer"
+            key={item.id}
           >
-            {item.title}
-          </h2>
-          <div className="icons flex gap-4">
-            <button onClick={() => editItem(item.id)}>
-              {" "}
-              <i className="fa-solid fa-clipboard hover:text-lg hover:text-success"></i>
-            </button>
+            <h2
+              onClick={() => changeStatu(item.id)}
+              className={` select-none text-xl lg:text-[15px] ${
+                item.statu ? "line-through text-error" : ""
+              }`}
+            >
+              {item.title}
+            </h2>
+            <div className="icons flex gap-4">
+              <button onClick={() => editItem(item.id)}>
+                {" "}
+                <i className="fa-solid fa-clipboard hover:text-lg text-success"></i>
+              </button>
 
-            <button onClick={() => removeItem(item.id)}>
-              {" "}
-              <i className="fa-solid fa-trash hover:text-lg hover:text-error"></i>
-            </button>
-          </div>
-        </li>
-      ))}
+              <button onClick={() => removeItem(item.id)}>
+                {" "}
+                <i className="fa-solid fa-trash hover:text-lg text-error"></i>
+              </button>
+            </div>
+          </li>
+        ))}
     </>
   );
 }
