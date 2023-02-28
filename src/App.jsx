@@ -44,7 +44,7 @@ function App() {
       setEditId(null);
     } else {
       showAlert(true, "success", "Item Added To The List");
-      const user = { id: Date.now(), title: text };
+      const user = { id: Date.now(), title: text, statu: false };
       setList([...list, user]);
       setText("");
       setControl(false);
@@ -55,10 +55,17 @@ function App() {
     setAlert({ show, type, msg });
   };
 
+  const changeStatu = (el) => {
+    const change = list.map((item) =>
+      item.id === el ? { ...item, statu: !item.statu } : item
+    );
+    setList(change);
+  };
+
   const clearList = () => {
     showAlert(true, "error", "empty list");
-    setIsEditing(false)
-    setText("")
+    setIsEditing(false);
+    setText("");
     setList([]);
   };
 
@@ -106,14 +113,19 @@ function App() {
           <>
             {" "}
             <ul className="flex flex-col gap-2 justify-between items-center p-4 w-full ">
-              <List list={list} removeItem={removeItem} editItem={editItem} />
+              <List
+                list={list}
+                removeItem={removeItem}
+                editItem={editItem}
+                changeStatu={changeStatu}
+              />
             </ul>
             <button
               onClick={clearList}
               className="btn btn-outline btn-error mt-4"
             >
               Clear
-            </button>
+            </button>{" "}
             <h2 className="mt-4 text-lg w-full ml-12">Todo: {list.length}</h2>
           </>
         )}

@@ -1,6 +1,7 @@
 import React from "react";
 
-function List({ list, removeItem , editItem }) {
+function List({ list, removeItem, editItem, changeStatu }) {
+  console.log(list);
   return (
     <>
       {list.map((item) => (
@@ -8,7 +9,14 @@ function List({ list, removeItem , editItem }) {
           className="p-2  w-full flex justify-between items-center gap-20 cursor-pointer"
           key={item.id}
         >
-          <h2 className="text-xl lg:text-[15px]">{item.title}</h2>
+          <h2
+            onClick={() => changeStatu(item.id)}
+            className={` select-none text-xl lg:text-[15px] ${
+              item.statu ? "line-through text-error" : ""
+            }`}
+          >
+            {item.title}
+          </h2>
           <div className="icons flex gap-4">
             <button onClick={() => editItem(item.id)}>
               {" "}
