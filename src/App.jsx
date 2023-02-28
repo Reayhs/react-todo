@@ -101,13 +101,6 @@ function App() {
   return (
     <>
       <div className="wrapper flex flex-col  items-center mt-20 w-auto mx-80 lg:mx-4 shadow-2xl rounded-2xl p-16 text-white relative">
-        <input
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-          type="text"
-          placeholder="Search"
-          className={`input input-bordered w-46  max-w-xs absolute top-2 right-8 `}
-        />
         <div className="title text-center flex flex-col gap-4">
           <h1 className={`text-4xl ${control && "text-error"} `}>To Do App</h1>
           {alert.show && <Alert showAlert={showAlert} {...alert} list={list} />}
@@ -137,6 +130,13 @@ function App() {
         </ul>
         {list.length > 0 && (
           <>
+            <input
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              type="text"
+              placeholder="Search"
+              className={`input input-bordered w-46  max-w-xs absolute top-2 right-8 `}
+            />
             <button
               onClick={clearList}
               className="btn btn-outline btn-error mt-4"
