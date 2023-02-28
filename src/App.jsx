@@ -57,6 +57,8 @@ function App() {
 
   const clearList = () => {
     showAlert(true, "error", "empty list");
+    setIsEditing(false)
+    setText("")
     setList([]);
   };
 
