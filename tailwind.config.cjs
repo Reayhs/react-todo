@@ -7,6 +7,7 @@ module.exports = {
   theme: {
     screens: {
       'lg': {'max': '1223px'},
+      "pd": {'max': '1023px'},
       },
     extend: {},
   },

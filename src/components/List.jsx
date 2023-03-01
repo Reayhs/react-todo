@@ -20,14 +20,17 @@ function List({ list, removeItem, editItem, changeStatu, searchText }) {
             className="p-2  w-full flex justify-between items-center gap-20 cursor-pointer"
             key={item.id}
           >
-            <h2
-              onClick={() => changeStatu(item.id)}
-              className={` select-none text-xl lg:text-[15px] ${
-                item.statu ? "line-through text-error" : ""
-              }`}
-            >
-              {item.title}
-            </h2>
+            <div className="flex gap-2 items-center">
+              <input  onClick={() => changeStatu(item.id)} type="checkbox" className="checkbox checkbox-bordered h-5 w-5" />
+              <h2
+                className={` select-none text-xl lg:text-[15px] ${
+                  item.statu ? "line-through text-error" : ""
+                }`}
+              >
+                {item.title}
+              </h2>
+            </div>
+
             <div className="icons flex gap-4">
               <button onClick={() => editItem(item.id)}>
                 {" "}

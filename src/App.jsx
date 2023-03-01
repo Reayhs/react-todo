@@ -100,9 +100,9 @@ function App() {
 
   return (
     <>
-      <div className="wrapper flex flex-col  items-center mt-20 w-auto mx-80 lg:mx-4 shadow-2xl rounded-2xl p-16 text-white relative">
+      <div className="wrapper flex flex-col  items-center mt-20 w-auto mx-80 lg:mx-4 shadow-2xl rounded-2xl p-16 lg:px-10 pd:px-6 text-white relative">
         <div className="title text-center flex flex-col gap-4">
-          <h1 className={`text-4xl ${control && "text-error"} `}>To Do App</h1>
+          <h1 className={`text-4xl ${control && "text-error"} pd:text-[30px] `}>To Do App</h1>
           {alert.show && <Alert showAlert={showAlert} {...alert} list={list} />}
         </div>
         <form onSubmit={handleSubmit} className="flex gap-1 mt-8">
@@ -135,15 +135,15 @@ function App() {
               onChange={(e) => setSearchText(e.target.value)}
               type="text"
               placeholder="Search"
-              className={`input input-bordered w-46  max-w-xs absolute top-2 right-8 `}
+              className={`input input-bordered w-46  max-w-xs absolute top-2 right-8 pd:w-40 pd:text-[10px]`}
             />
             <button
               onClick={clearList}
-              className="btn btn-outline btn-error mt-4"
+              className="btn btn-outline btn-error mt-4 pd:w-40 pd:text-[10px]"
             >
               delete completed tasks
             </button>{" "}
-            <h2 className="mt-4 text-lg w-full ml-12">Todo: {list.length}</h2>
+            <h2 className="mt-4 text-lg w-full ml-12 pd:text-[15px] pd:ml-16">Todo: {list.length}</h2>
           </>
         )}
       </div>
